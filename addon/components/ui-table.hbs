@@ -1,4 +1,10 @@
-<table>
+{{#if this.data.isResolved}}
+  done
+{{else if this.data.isPending}}
+  loading
+{{/if}}
+
+<table aria-multiselectable="true">
   <caption id="table-caption">{{@title}}</caption>
   <thead>
     <tr>
