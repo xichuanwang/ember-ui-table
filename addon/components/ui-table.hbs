@@ -1,78 +1,32 @@
-{{#if this.data.isResolved}}
-  done
-{{else if this.data.isPending}}
-  loading
-{{/if}}
+<div>
+  {{#if this.data.isPending}}
+    <div class="loading-indicator">Loading...</div>
+  {{else if this.data.isRejected}}
+    <div class="error-indicator">Error loading data</div>
+  {{else if this.data.isResolved}}
+    <table aria-multiselectable="true">
+      <caption id="table-caption">{{@title}}</caption>
+      
+      <thead>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Download selected</td>
+        </tr>
+        <tr>
+          <th scope="col"></th>
+          {{#each this.columns as |column|}}
+            <th scope="col">{{column.displayName}}</th>
+          {{/each}}
+        </tr>
+      </thead>
 
-<table aria-multiselectable="true">
-  <caption id="table-caption">{{@title}}</caption>
-  <thead>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>Download selected</td>
-    </tr>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Device</th>
-      <th scope="col">Path</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" /></td>
-      <td>smss.exe</td>
-      <td>Mario</td>
-      <td>\Device\Harwddisl\volum2\windopws\system32\smss.exe</td>
-      <td>Scheduled</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <!-- pagiation here -->
-    </tr>
-  </tfoot>
-</table>
+      <TableBody @columns={{this.columns}} @data={{this.data.value}} />
+
+      <tfoot>
+        <tr>
+          <!-- pagiation here -->
+        </tr>
+      </tfoot>
+    </table>
+  {{/if}}
+</div>

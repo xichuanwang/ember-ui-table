@@ -1,11 +1,30 @@
 import Controller from '@ember/controller';
-import { tracked } from '@glimmer/tracking';
 import { generateData } from '../helpers/generate-data';
 import { action } from '@ember/object';
 import { TrackedAsyncData } from 'ember-async-data';
 
 
 export default class ApplicationController extends Controller {
+  // Basic table column configuration
+  columns = [
+    {
+      displayName: 'Name',
+      key: 'name',
+    },
+    {
+      displayName: 'Device',
+      key: 'device',
+    },
+    {
+      displayName: 'Path',
+      key: 'path',
+    },
+    {
+      displayName: 'Status',
+      key: 'status',
+    },
+  ];
+
   /**
    * Returns a TrackedAsyncData instance that resolves with generated data after a delay.
    * @returns TrackedAsyncData instance

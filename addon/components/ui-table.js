@@ -6,12 +6,28 @@ export default class UITable extends Component {
   data;
 
   /**
+   * Columns configuration for the table. Consumer of component
+   * should define the name of the column and the data key to be displayed in the column.
+   * Example:
+   * columns = [
+   *   { name: 'Name', key: 'name' },
+   *   { name: 'Age', key: 'age' },
+   * ]
+   * If no columns are provided, it will default to an empty array, and the component will throw an error during initialization.
+   */
+  columns = this.args.columns || undefined;
+
+  /**
    * On element initialization, the onLoad method is called to fetch the data for the table. 
    * This ensures that the table is populated with data as soon as it is rendered.
    */
   constructor() {
     super(...arguments);
-    
+
+    if (!this.args.columns) {
+      throw new Error('Missing table column configuration. Please provide a columns argument to the UITable component.');
+    }
+
     this.onLoad();
   }
 
@@ -20,8 +36,8 @@ export default class UITable extends Component {
    * The function is expected to return a TrackedAsyncData instance, which will automatically update the 
    * table state when the loading is complete.
    */
-  onLoad() {
+  async onLoad() {
     const trackedData = this.args.onFetch();
-    this.data = trackedData;
+    this.data = await trackedData;
   }
 }
