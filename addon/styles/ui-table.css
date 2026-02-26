@@ -1,0 +1,16 @@
+.ui-table-wrapper {
+  font-family: Arial, sans-serif;
+  color: rgb(90, 90, 90);
+  font-size: 62.5%;
+}
+
+.ui-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: inherit;
+  font-size: 1.2em;
+}
+
+@import "./table-header.css";
+@import "./table-body.css";
+@import "./table-row.css";

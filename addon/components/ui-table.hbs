@@ -1,18 +1,18 @@
-<div>
+<div ...attributes class="ui-table-wrapper" role="region" aria-labelledby="table-caption">
   {{#if this.data.isPending}}
     <div class="loading-indicator">Loading...</div>
   {{else if this.data.isRejected}}
     <div class="error-indicator">Error loading data</div>
   {{else if this.data.isResolved}}
-    <table aria-multiselectable="true">
+    <table class="ui-table" aria-multiselectable="true">
       <caption id="table-caption">{{@title}}</caption>
       
-      <thead>
-        <tr>
+      <thead class="ui-table__header">
+        <tr class="ui-table__header-actions">
           <td><input type="checkbox" /></td>
-          <td>Download selected</td>
+          <td class="ui-table__header-actions-download">Download selected</td>
         </tr>
-        <tr>
+        <tr class="ui-table__header-labels">
           <th scope="col"></th>
           {{#each this.columns as |column|}}
             <th scope="col">{{column.displayName}}</th>
@@ -22,7 +22,7 @@
 
       <TableBody @columns={{this.columns}} @data={{this.data.value}} />
 
-      <tfoot>
+      <tfoot class="ui-table__footer">
         <tr>
           <!-- pagiation here -->
         </tr>

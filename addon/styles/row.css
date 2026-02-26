@@ -1,0 +1,11 @@
+.ui-table__row {
+  cursor: pointer;
+}
+
+.ui-table__row:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.ui-table__row[aria-selected="true"] {
+  background-color: rgb(200, 200, 200);
+}

@@ -1,0 +1,19 @@
+.ui-table__header-actions-download {
+  font-size: 1.6em;
+}
+
+.ui-table__header-actions td {
+  padding-block: 20px;
+}
+
+.ui-table__header-labels {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.ui-table__header-labels th {
+  text-align: left;
+  padding-block: 20px;
+  font-size: 1.4em;
+  font-style: normal;
+}
