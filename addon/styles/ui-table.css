@@ -11,6 +11,7 @@
   font-size: 1.2em;
 }
 
+@import "./loading-indicator.css";
 @import "./table-actions.css";
 @import "./table-header.css";
 @import "./table-body.css";
