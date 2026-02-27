@@ -19,7 +19,7 @@ export default class UITable extends Component {
 
   get selectableItems() {
     return this.data.value.reduce((acc, item, idx) => {
-      if (item.status === 'available') {
+      if (this.args.validationFunction(item.status)) {
         acc.push(idx);
       }
       return acc;

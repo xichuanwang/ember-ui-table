@@ -1,8 +1,9 @@
 <tbody class="ui-table__body">
   {{#each this.processedRows as |rowData idx|}}
     <Row 
+      @validationFunction={{@validationFunction}}
       @selectedItems={{@selectedItems}} 
-      @data={{rowData}} 
+      @rowData={{rowData}} 
       @onClick={{@handleRowClick}} 
       @idx={{idx}}
     />

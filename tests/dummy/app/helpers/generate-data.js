@@ -10,6 +10,6 @@ export function generateData(length = 20) {
     name: faker.system.fileName(),
     device: faker.helpers.arrayElement(['Mario', 'Luigi', 'Peach', 'Bowser', 'Toad', 'Yoshi', 'Donkey Kong']),
     path: faker.system.filePath(),
-    status: faker.helpers.arrayElement(['scheduled', 'available']),
+    status: faker.helpers.arrayElement(['Scheduled', 'Available']),
   }));
 } 

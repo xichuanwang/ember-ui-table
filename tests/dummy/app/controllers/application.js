@@ -22,6 +22,7 @@ export default class ApplicationController extends Controller {
     {
       displayName: 'Status',
       key: 'status',
+      customCellComponent: 'status-cell', // Use custom cell component for status
     },
   ];
 
@@ -50,5 +51,11 @@ export default class ApplicationController extends Controller {
     }, []).join('\n');
 
     alert(alertText);
+  }
+
+  @action
+  validationFunction(status) {
+    // Example validation: only allow download if status is 'available'
+    return status.toLowerCase() === 'available';
   }
 }

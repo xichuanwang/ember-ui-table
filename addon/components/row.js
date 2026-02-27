@@ -18,7 +18,7 @@ export default class RowComponent extends Component {
    * @returns {boolean} - Returns true if the row can be selected, false otherwise.
    */
   get canRowBeSelected() {
-    return this.args.data.filter((item) => item === 'available').length > 0;
+    return this.args.rowData.filter((row) => this.args.validationFunction(row.data)).length > 0;
   }
   
   /**

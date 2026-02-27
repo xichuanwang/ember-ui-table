@@ -4,4 +4,8 @@
   @onFetch={{this.loadData}}
   @columns={{this.columns}}
   @onDownload={{this.onDownload}}
+  @customCellComponents={{hash
+    status-cell=(component "status-cell")
+  }}
+  @validationFunction={{this.validationFunction}}
 />

@@ -8,11 +8,14 @@ export default class TableBodyComponent extends Component {
   get processedRows() {
     return this.args.data.reduce((acc, item) => {
       const row = this.args.columns.map((col) => {
+        const rowData = {};
         if (col.key) {
-          return item[col.key];
-        } else {
-          return null;
+          rowData.data = item[col.key];
         }
+        if (col.customCellComponent) {
+          rowData.customCellComponent = col.customCellComponent;
+        }
+        return rowData;
       });
       acc.push(row);
       return acc;

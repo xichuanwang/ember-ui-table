@@ -13,11 +13,12 @@
     />
 
     <table class="ui-table" aria-multiselectable="true">
-      <caption id="table-caption">{{@title}}</caption>
+      <caption id="table-caption" class="visually-hidden">{{@title}}</caption>
       
       <TableHeader @columns={{this.columns}} />
 
-      <TableBody 
+      <TableBody
+        @validationFunction={{@validationFunction}}
         @columns={{this.columns}} 
         @data={{this.data.value}}
         @selectedItems={{this.selectedItems}}

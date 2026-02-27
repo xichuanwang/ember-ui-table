@@ -3,7 +3,13 @@
     <input type="checkbox" checked={{this.isSelected}} {{on "click" this.onCheckboxClick}}/>
   </td>
 
-  {{#each @data as |content|}}
-    <td>{{content}}</td>
+  {{#each @rowData as |rowData|}}
+    <td>
+      {{#if rowData.customCellComponent}}
+        {{component rowData.customCellComponent data=rowData.data}}
+      {{else}}
+        {{rowData.data}}        
+      {{/if}}
+    </td>
   {{/each}}
 </tr>
