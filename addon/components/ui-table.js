@@ -1,9 +1,13 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class UITable extends Component {
   @tracked
   data;
+
+  @tracked
+  selectedItems = new Set();
 
   /**
    * Columns configuration for the table. Consumer of component
@@ -39,5 +43,16 @@ export default class UITable extends Component {
   async onLoad() {
     const trackedData = this.args.onFetch();
     this.data = await trackedData;
+  }
+
+  @action
+  handleRowClick(rowData) {
+    if (this.selectedItems.has(rowData)) {
+      this.selectedItems.delete(rowData);
+    } else {
+      this.selectedItems.add(rowData);
+    }
+
+    this.selectedItems = new Set(this.selectedItems);
   }
 }

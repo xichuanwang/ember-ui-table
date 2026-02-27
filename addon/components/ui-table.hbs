@@ -9,8 +9,17 @@
       
       <thead class="ui-table__header">
         <tr class="ui-table__header-actions">
-          <td><input type="checkbox" /></td>
-          <td class="ui-table__header-actions-download">Download selected</td>
+          <td>
+            <input type="checkbox" /> 
+            {{#if (gt this.selectedItems.size 0)}}
+              {{this.selectedItems.size}} selected
+            {{else}}
+              None selected
+            {{/if}}
+          </td>
+          {{#if (gt this.selectedItems.size 0)}}
+            <td class="ui-table__header-actions-download">Download selected</td>
+          {{/if}}
         </tr>
         <tr class="ui-table__header-labels">
           <th scope="col"></th>
@@ -20,7 +29,11 @@
         </tr>
       </thead>
 
-      <TableBody @columns={{this.columns}} @data={{this.data.value}} />
+      <TableBody 
+        @columns={{this.columns}} 
+        @data={{this.data.value}} 
+        @handleRowClick={{this.handleRowClick}}
+      />
 
       <tfoot class="ui-table__footer">
         <tr>
