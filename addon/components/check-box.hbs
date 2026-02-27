@@ -1,5 +1,5 @@
 <label>
-  <input type="checkbox" indeterminate={{@isIndeterminate}} checked={{this.isChecked}} {{on "change" @onCheckboxChange}}/>
+  <input type="checkbox" indeterminate={{@isIndeterminate}} checked={{gt @selectedItems.size 0}} {{on "change" @onCheckboxChange}}/>
   {{#if (gt @selectedItems.size 0)}}
     Selected {{@selectedItems.size}}
   {{else}}

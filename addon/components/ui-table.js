@@ -3,21 +3,45 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class UITable extends Component {
+  /**
+   * Tracked property to hold the async data for the table.
+   */
   @tracked
   data;
 
+  /**
+   * Used to keep track of selected items in the table. It is a Set to ensure uniqueness and efficient lookups.
+   * @type {Set}
+   */
   @tracked
   selectedItems = new Set();
 
+  /** 
+   * Computed property to determine if the "Select All" checkbox should be in an indeterminate state.
+   * @type {boolean}
+   */
   get isIndeterminate() {
     return this.selectedItems.size > 0 && this.selectedItems.size !== this.selectableItems.length;
   }
 
+  /**
+   * A getter for the items that are selected and can be downloaded. It filters the data based on the selected item index.
+   * @type {Array}
+   */
   get downloadableItems() {
     return this.data.value.filter((item, idx) => this.selectedItems.has(idx));
   }
 
+  /**
+   * A getter to show indices of items that are selectable based on the validation function provided in the arguments.
+   * If no validation function is provided, it defaults to all items being selectable.
+   * @type {Array}
+   */
   get selectableItems() {
+    if (!this.args.validationFunction) {
+      return this.data.values;
+    }
+
     return this.data.value.reduce((acc, item, idx) => {
       if (this.args.validationFunction(item.status)) {
         acc.push(idx);
@@ -62,6 +86,11 @@ export default class UITable extends Component {
     this.data = await trackedData;
   }
 
+  /**
+   * Handle when a row is clicked. It toggles the selection state of the item based on its index. If the item is ]
+   * already selected, it will be deselected, and vice versa.
+   * @param {number} id 
+   */
   @action
   handleRowClick(id) {
     if (this.selectedItems.has(id)) {
@@ -72,6 +101,9 @@ export default class UITable extends Component {
     this.selectedItems = new Set(this.selectedItems);
   }
 
+  /**
+   * Handle when the "Select All" checkbox is changed. If all items are currently selected, it will deselect all items.
+   */
   @action
   onCheckboxChange() {
     if (this.selectedItems.size === this.selectableItems.length) {
@@ -81,6 +113,10 @@ export default class UITable extends Component {
     }
   }
 
+  /**
+   * Handles when the download button is called. Will pass the list of downloadable items to the callee of the
+   * function so that it can be handled externally. This can be useful when an additional API call is needed.
+   */
   @action
   onDownload() {
     if (!this.args.onDownload) {
