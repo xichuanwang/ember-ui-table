@@ -1,5 +1,10 @@
 <tbody class="ui-table__body">
-  {{#each this.processedRows as |rowData|}}
-    <Row @data={{rowData}} @onClick={{@handleRowClick}}/>
+  {{#each this.processedRows as |rowData idx|}}
+    <Row 
+      @selectedItems={{@selectedItems}} 
+      @data={{rowData}} 
+      @onClick={{@handleRowClick}} 
+      @idx={{idx}}
+    />
   {{/each}}
 </tbody>

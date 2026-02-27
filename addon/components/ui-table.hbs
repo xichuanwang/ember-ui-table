@@ -5,7 +5,11 @@
     <div class="error-indicator">Error loading data</div>
   {{else if this.data.isResolved}}
 
-    <TableActions @selectedItems={{this.selectedItems}}/>
+    <TableActions 
+      @selectedItems={{this.selectedItems}} 
+      @onCheckboxChange={{this.onCheckboxChange}}
+      @isIndeterminate={{this.isIndeterminate}}
+    />
 
     <table class="ui-table" aria-multiselectable="true">
       <caption id="table-caption">{{@title}}</caption>
@@ -14,7 +18,8 @@
 
       <TableBody 
         @columns={{this.columns}} 
-        @data={{this.data.value}} 
+        @data={{this.data.value}}
+        @selectedItems={{this.selectedItems}}
         @handleRowClick={{this.handleRowClick}}
       />
 

@@ -1,6 +1,6 @@
-<tr class="ui-table__row" tabindex=0 aria-selected="{{this.isSelected}}" {{on "click" this.onClick}}>
+<tr class="ui-table__row" tabindex=0 aria-selected="{{this.isSelected}}" {{on "click" this.onRowClick}}>
   <td>
-    <input type="checkbox" checked={{this.isSelected}} />
+    <input type="checkbox" checked={{this.isSelected}} {{on "click" this.onCheckboxClick}}/>
   </td>
 
   {{#each @data as |content|}}

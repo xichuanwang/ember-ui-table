@@ -3,13 +3,14 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class RowComponent extends Component {
-
+  
   /**
-   * isSelected is a tracked property that indicates whether the row is currently selected or not.
-   * @type {boolean}
+   * Determines if the current row is selected by checking if the index is in the selectedItems set.
+   * @returns {boolean} - Returns true if the row is selected, false otherwise.
    */
-  @tracked
-  isSelected = false;
+  get isSelected() {
+    return this.args.selectedItems.has(this.args.idx);
+  }
 
   /**
    * A row can be selected if at least one of its items is available.
@@ -20,12 +21,39 @@ export default class RowComponent extends Component {
     return this.args.data.filter((item) => item === 'available').length > 0;
   }
   
+  /**
+   * When a row is clicked, this action is triggered.
+   * Calls the onClick handler passed in through args with the index of the row.
+   * @param {PointerEvent} event 
+   */
   @action
-  onClick() {
+  onRowClick(event) {
+    // Prevent double event firing when clicking on a checkbox or label
+    if (event.target.type === "checkbox" || event.target.tagName === "LABEL") {
+      return;
+    }
+
     if (!this.canRowBeSelected) {
       return;
     }
-    this.isSelected = !this.isSelected;
-    this.args.onClick(this.args.data);
+
+    this.args.onClick(this.args.idx);
+  }
+
+  /**
+   * When a checkbox is clicked, this action is triggered.
+   * Also calls the onclick - but only if the row can be selected. If the row cannot be selected, 
+   * it prevents the default checkbox behavior.
+   * @param {PointerEvent} event 
+   * @returns 
+   */
+  @action
+  onCheckboxClick(event) {
+    if (!this.canRowBeSelected) {
+      event.preventDefault();
+      return;
+    }
+
+    this.args.onClick(this.args.idx);
   }
 }

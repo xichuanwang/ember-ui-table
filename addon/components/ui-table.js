@@ -9,6 +9,19 @@ export default class UITable extends Component {
   @tracked
   selectedItems = new Set();
 
+  get isIndeterminate() {
+    return this.selectedItems.size > 0 && this.selectedItems.size !== this.selectableItems.length;
+  }
+
+  get selectableItems() {
+    return this.data.value.reduce((acc, item, idx) => {
+      if (item.status === 'available') {
+        acc.push(idx);
+      }
+      return acc;
+    }, []);
+  }
+
   /**
    * Columns configuration for the table. Consumer of component
    * should define the name of the column and the data key to be displayed in the column.
@@ -45,15 +58,22 @@ export default class UITable extends Component {
     this.data = await trackedData;
   }
 
-  
   @action
-  handleRowClick(rowData) {
-    if (this.selectedItems.has(rowData)) {
-      this.selectedItems.delete(rowData);
+  handleRowClick(id) {
+    if (this.selectedItems.has(id)) {
+      this.selectedItems.delete(id);
     } else {
-      this.selectedItems.add(rowData);
+      this.selectedItems.add(id);
     }
-
     this.selectedItems = new Set(this.selectedItems);
+  }
+
+  @action
+  onCheckboxChange() {
+    if (this.selectedItems.size === this.selectableItems.length) {
+      this.selectedItems = new Set();
+    } else {
+      this.selectedItems = new Set(this.selectableItems);
+    }
   }
 }

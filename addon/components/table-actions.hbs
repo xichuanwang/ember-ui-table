@@ -1,13 +1,6 @@
 <div class="ui-table__actions">
   <div class="ui-table__actions-select">
-    <label>
-      <input type="checkbox" />
-      {{#if (gt @selectedItems.size 0)}}
-        Selected {{@selectedItems.size}} 
-      {{else}}
-        None selected
-      {{/if}} 
-    </label>
+    <CheckBox @isIndeterminate={{@isIndeterminate}} @selectedItems={{@selectedItems}} @onCheckboxChange={{@onCheckboxChange}}/>
   </div>
   {{#if (gt @selectedItems.size 0)}}
     <div class="ui-table__actions-download">Download selected</div>
