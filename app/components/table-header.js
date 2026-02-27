@@ -1,0 +1,1 @@
+export { default } from 'ember-ui-table/components/table-header';

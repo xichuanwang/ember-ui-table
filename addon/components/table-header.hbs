@@ -1,0 +1,8 @@
+<thead class="ui-table__header">
+  <tr class="ui-table__header-labels">
+    <th scope="col"></th>
+    {{#each @columns as |column|}}
+      <th scope="col">{{column.displayName}}</th>
+    {{/each}}
+  </tr>
+</thead>

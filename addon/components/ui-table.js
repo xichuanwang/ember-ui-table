@@ -45,6 +45,7 @@ export default class UITable extends Component {
     this.data = await trackedData;
   }
 
+  
   @action
   handleRowClick(rowData) {
     if (this.selectedItems.has(rowData)) {
