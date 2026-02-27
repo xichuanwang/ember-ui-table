@@ -11,23 +11,7 @@
   font-size: 1.2em;
 }
 
-.ui-table__actions {
-  display: flex;
-}
-
-.ui-table__actions-select {
-  font-size: 1.6em;
-  margin-inline-end: 20em;
-}
-
-.ui-table__actions-download {
-  font-size: 1.6em;
-}
-
-.ui-table__actions td {
-  padding-block: 20px;
-}
-
+@import "./table-actions.css";
 @import "./table-header.css";
 @import "./table-body.css";
 @import "./table-row.css";

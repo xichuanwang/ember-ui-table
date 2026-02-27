@@ -13,6 +13,10 @@ export default class UITable extends Component {
     return this.selectedItems.size > 0 && this.selectedItems.size !== this.selectableItems.length;
   }
 
+  get downloadableItems() {
+    return this.data.value.filter((item, idx) => this.selectedItems.has(idx));
+  }
+
   get selectableItems() {
     return this.data.value.reduce((acc, item, idx) => {
       if (item.status === 'available') {
@@ -75,5 +79,14 @@ export default class UITable extends Component {
     } else {
       this.selectedItems = new Set(this.selectableItems);
     }
+  }
+
+  @action
+  onDownload() {
+    if (!this.args.onDownload) {
+      return;
+    }
+
+    this.args.onDownload(this.downloadableItems);
   }
 }

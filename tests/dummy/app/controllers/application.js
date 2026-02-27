@@ -41,4 +41,14 @@ export default class ApplicationController extends Controller {
 
     return new TrackedAsyncData(p);
   }
+
+  @action
+  onDownload(selectedItems) {
+    const alertText = selectedItems.reduce((acc, item) => {
+      acc.push(`Device: ${item.device} - Path: ${item.path}`);
+      return acc;
+    }, []).join('\n');
+
+    alert(alertText);
+  }
 }

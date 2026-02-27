@@ -3,6 +3,8 @@
     <CheckBox @isIndeterminate={{@isIndeterminate}} @selectedItems={{@selectedItems}} @onCheckboxChange={{@onCheckboxChange}}/>
   </div>
   {{#if (gt @selectedItems.size 0)}}
-    <div class="ui-table__actions-download">Download selected</div>
+    <div class="ui-table__actions-download">
+      <button class="ui-table__actions-download-button" type="button" {{on "click" @onDownload}}>Download selected</button>
+    </div>
   {{/if}}
 </div>
