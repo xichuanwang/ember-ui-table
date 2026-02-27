@@ -18,6 +18,9 @@ export default class RowComponent extends Component {
    * @returns {boolean} - Returns true if the row can be selected, false otherwise.
    */
   get canRowBeSelected() {
+    if (!this.args.validationFunction) {
+      return true;
+    }
     return this.args.rowData.filter((row) => this.args.validationFunction(row.data)).length > 0;
   }
   
@@ -49,11 +52,6 @@ export default class RowComponent extends Component {
    */
   @action
   onCheckboxClick(event) {
-    if (!this.canRowBeSelected) {
-      event.preventDefault();
-      return;
-    }
-
     this.args.onClick(this.args.idx);
   }
 }

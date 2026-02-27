@@ -1,10 +1,10 @@
 <tr class="ui-table__row" tabindex=0 aria-selected="{{this.isSelected}}" {{on "click" this.onRowClick}}>
   <td>
-    <input type="checkbox" checked={{this.isSelected}} {{on "click" this.onCheckboxClick}}/>
+    <input type="checkbox" checked={{this.isSelected}} disabled={{not this.canRowBeSelected}} {{on "click" this.onCheckboxClick}}/>
   </td>
 
   {{#each @rowData as |rowData|}}
-    <td>
+    <td class="ui-table__cell">
       {{#if rowData.customCellComponent}}
         {{component rowData.customCellComponent data=rowData.data}}
       {{else}}
