@@ -1,11 +1,31 @@
+.ui-table__row,
+.ui-table__ghost-cell {
+  --gray-color: rgb(240, 240, 240);
+  --dark-gray-color:rgb(200, 200, 200);
+}
+
 .ui-table__row {
   cursor: pointer;
 }
 
 .ui-table__row:hover {
-  background-color: rgb(240, 240, 240);
+  background-color: var(--gray-color);
+}
+
+.ui-table__ghost-row {
+  pointer-events: none;
 }
 
 .ui-table__row[aria-selected="true"] {
-  background-color: rgb(200, 200, 200);
+  background-color: var(--dark-gray-color)
+}
+
+.ui-table__ghost-cell {
+  height: 1.6em;
+  background-color: var(--gray-color);
+}
+
+.ui-table__cell-checkbox,
+.ui-table__ghost-checkbox {
+  width: 1.6em;
 }

@@ -125,4 +125,16 @@ export default class UITable extends Component {
 
     this.args.onDownload(this.downloadableItems);
   }
+
+  /**
+   * Handles a page change request from the pagination component.
+   * Calls the consumer provided handler that fetch new data and also
+   * resets the internal set since its a requesting new data
+   * @param {number} newPage
+   */
+  @action
+  onPageChange(newPage) {
+    this.selectedItems = new Set();
+    this.data = this.args.onPageChange(newPage);
+  }
 }

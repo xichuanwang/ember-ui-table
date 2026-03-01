@@ -1,5 +1,5 @@
 <tr class="ui-table__row" tabindex=0 aria-selected="{{this.isSelected}}" {{on "click" this.onRowClick}}>
-  <td>
+  <td class="ui-table__cell-checkbox">
     <input type="checkbox" checked={{this.isSelected}} disabled={{not this.canRowBeSelected}} {{on "click" this.onCheckboxClick}}/>
   </td>
 

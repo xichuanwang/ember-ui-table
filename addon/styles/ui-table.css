@@ -6,6 +6,7 @@
 
 .ui-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font: inherit;
   font-size: 1.2em;

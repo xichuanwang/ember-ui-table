@@ -1,11 +1,19 @@
 <tbody class="ui-table__body">
-  {{#each this.processedRows as |rowData idx|}}
-    <Row 
-      @validationFunction={{@validationFunction}}
-      @selectedItems={{@selectedItems}} 
-      @rowData={{rowData}} 
-      @onClick={{@handleRowClick}} 
-      @idx={{idx}}
-    />
-  {{/each}}
+  {{#if @data.isPending}}
+    {{#each this.ghostRows as |row|}}
+      <GhostRow 
+        @columns={{@columns}}
+      />
+    {{/each}}
+  {{else if @data.isResolved}}
+    {{#each this.processedRows as |rowData idx|}}
+      <Row 
+        @validationFunction={{@validationFunction}}
+        @selectedItems={{@selectedItems}} 
+        @rowData={{rowData}} 
+        @onClick={{@handleRowClick}} 
+        @idx={{idx}}
+      />
+    {{/each}}
+  {{/if}}
 </tbody>

@@ -1,35 +1,34 @@
 <div ...attributes class="ui-table-wrapper" role="region" aria-labelledby="table-caption">
-  {{#if this.data.isPending}}
-    <div class="loading-indicator">Loading...</div>
-  {{else if this.data.isRejected}}
-    <div class="error-indicator">Error loading data</div>
-  {{else if this.data.isResolved}}
+  <TableActions 
+    @selectedItems={{this.selectedItems}} 
+    @onCheckboxChange={{this.onCheckboxChange}}
+    @isIndeterminate={{this.isIndeterminate}}
+    @onDownload={{this.onDownload}}
+  />
 
-    <TableActions 
-      @selectedItems={{this.selectedItems}} 
-      @onCheckboxChange={{this.onCheckboxChange}}
-      @isIndeterminate={{this.isIndeterminate}}
-      @onDownload={{this.onDownload}}
+  <table class="ui-table" aria-multiselectable="true">
+    <caption id="table-caption" class="visually-hidden">{{@title}}</caption>
+    
+    <TableHeader @columns={{this.columns}} />
+    
+    <TableBody
+      @validationFunction={{@validationFunction}}
+      @columns={{this.columns}} 
+      @data={{this.data}}
+      @selectedItems={{this.selectedItems}}
+      @handleRowClick={{this.handleRowClick}}
+      @pageSize={{@pagination.pageSize}}
     />
 
-    <table class="ui-table" aria-multiselectable="true">
-      <caption id="table-caption" class="visually-hidden">{{@title}}</caption>
-      
-      <TableHeader @columns={{this.columns}} />
-
-      <TableBody
-        @validationFunction={{@validationFunction}}
-        @columns={{this.columns}} 
-        @data={{this.data.value}}
-        @selectedItems={{this.selectedItems}}
-        @handleRowClick={{this.handleRowClick}}
-      />
-
-      <tfoot class="ui-table__footer">
-        <tr>
-          <!-- pagiation here -->
-        </tr>
-      </tfoot>
-    </table>
-  {{/if}}
+    <tfoot class="ui-table__footer">
+      <tr>
+        <td colspan={{this.args.columns.length}}>
+          <TablePagination
+            @pagination={{@pagination}}
+            @onPageChange={{this.onPageChange}}
+          />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
