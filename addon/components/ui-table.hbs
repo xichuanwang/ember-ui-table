@@ -20,15 +20,17 @@
       @pageSize={{@pagination.pageSize}}
     />
 
-    <tfoot class="ui-table__footer">
-      <tr>
-        <td colspan={{this.args.columns.length}}>
-          <TablePagination
-            @pagination={{@pagination}}
-            @onPageChange={{this.onPageChange}}
-          />
-        </td>
-      </tr>
-    </tfoot>
+    {{#if @pagination}}
+      <tfoot class="ui-table__footer">
+        <tr>
+          <td colspan={{this.args.columns.length}}>
+            <TablePagination
+              @pagination={{@pagination}}
+              @onPageChange={{this.onPageChange}}
+            />
+          </td>
+        </tr>
+      </tfoot>
+    {{/if}}
   </table>
 </div>

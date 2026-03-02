@@ -39,7 +39,7 @@ export default class UITable extends Component {
    */
   get selectableItems() {
     if (!this.args.validationFunction) {
-      return this.data.values;
+      return this.data.value.map((_, idx) => idx);
     }
 
     return this.data.value.reduce((acc, item, idx) => {
